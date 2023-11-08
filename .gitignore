@@ -1,0 +1,4 @@
+*.o
+*.wasm
+*.a
+test_native
