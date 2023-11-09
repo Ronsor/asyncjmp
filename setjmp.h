@@ -3,10 +3,8 @@
 
 #include <stdbool.h>
 
-#define NOINLINE(x) __attribute__((noinline)) x
-
 #ifndef WASM_SETJMP_STACK_BUFFER_SIZE
-# define WASM_SETJMP_STACK_BUFFER_SIZE 6144
+# define WASM_SETJMP_STACK_BUFFER_SIZE 32768
 #endif
 
 struct __asyncjmp_asyncify_jmp_buf {
@@ -31,8 +29,8 @@ typedef struct {
 } asyncjmp_jmp_buf;
 
 // noinline to avoid breaking Asyncify assumption
-NOINLINE(int _asyncjmp_setjmp(asyncjmp_jmp_buf *env));
-NOINLINE(void _asyncjmp_longjmp(asyncjmp_jmp_buf *env, int payload));
+__attribute__((noinline)) int _asyncjmp_setjmp(asyncjmp_jmp_buf *env);
+__attribute__((noinline)) void _asyncjmp_longjmp(asyncjmp_jmp_buf *env, int payload);
 
 #define asyncjmp_setjmp(env) ((env).state = 0, _asyncjmp_setjmp(&(env)))
 

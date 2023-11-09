@@ -1,7 +1,8 @@
 HOSTCC ?= cc
-CC ?= clang
-AR ?= llvm-ar
-WASM_OPT ?= wasm-opt
+
+CC = $(WASI_SDK_PATH)/bin/clang
+AR = $(WASI_SDK_PATH)/bin/llvm-ar
+WASM_OPT := wasm-opt
 
 CFLAGS = -I.
 LDFLAGS =
