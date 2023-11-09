@@ -1,4 +1,4 @@
-	# extern int _asyncjmp_setjmp_internal(rb_wasm_jmp_buf *env);
+	# extern int _asyncjmp_setjmp_internal(asyncjmp_wasm_jmp_buf *env);
 	.functype	_asyncjmp_setjmp_internal (i32) -> (i32)
 	# extern int __stack_pointer;
 	.globaltype 	__stack_pointer, i32
@@ -7,7 +7,7 @@
 	# This cannot be implemented in C because there is no way to manipulate stack pointer
 	# without C-epilogue.
 
-	# extern int _asyncjmp_setjmp(rb_wasm_jmp_buf *env);
+	# extern int _asyncjmp_setjmp(asyncjmp_wasm_jmp_buf *env);
 	.section	.text._asyncjmp_setjmp,"",@
 	.globl		_asyncjmp_setjmp
 	.type		_asyncjmp_setjmp,@function
